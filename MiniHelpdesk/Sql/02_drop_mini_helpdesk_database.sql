@@ -1,0 +1,12 @@
+USE master;
+GO
+
+IF DB_ID(N'MiniHelpdeskDb') IS NOT NULL
+BEGIN
+    ALTER DATABASE [MiniHelpdeskDb]
+    SET SINGLE_USER
+    WITH ROLLBACK IMMEDIATE;
+
+    DROP DATABASE [MiniHelpdeskDb];
+END
+GO
