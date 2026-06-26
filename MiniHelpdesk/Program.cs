@@ -1,3 +1,4 @@
+using MiniHelpdesk.Middleware;
 using MiniHelpdesk.Repositories;
 using MiniHelpdesk.Services;
 
@@ -10,9 +11,11 @@ builder.Services.AddScoped<ITicketService, TicketService>();
 
 var app = builder.Build();
 
+app.UseMiddleware<ExceptionHandlingMiddleware>();
+app.UseMiddleware<RequestTimingMiddleware>();
+
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
     app.UseHsts();
 }
 
